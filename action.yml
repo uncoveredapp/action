@@ -1,0 +1,20 @@
+name: Uncovered Action
+description: A GitHub Action to upload code coverage
+author: Ian Sutherland
+
+inputs:
+  coverageDirectory:
+    description: Location of your coverage reports
+    default: coverage
+    required: false
+  uncoveredToken:
+    description: The upload token for your repository
+    required: true
+
+runs:
+  using: node12
+  main: build/index.js
+
+branding:
+  icon: trending-up
+  color: green

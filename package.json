@@ -1,0 +1,72 @@
+{
+  "name": "uncovered-action",
+  "description": "A GitHub Action to upload code coverage",
+  "version": "1.0.0",
+  "author": "Ian Sutherland <ian@iansutherland.ca>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iansu/uncovered-action"
+  },
+  "main": "build/index.js",
+  "private": true,
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "scripts": {
+    "start": "ts-node-dev --no-notify -- src/index.ts",
+    "build": "NODE_ENV=production ncc build src/index.ts -o build --minify",
+    "test": "jest",
+    "clean": "rimraf build",
+    "clean:modules": "rimraf node_modules",
+    "lint": "eslint \"**/*.{ts,js}\"",
+    "format": "prettier --write **/*.ts",
+    "format:check": "prettier --check **/*.ts"
+  },
+  "keywords": [
+    "actions",
+    "github",
+    "coverage",
+    "code coverage",
+    "javascript",
+    "typescript"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint"
+    ],
+    "*.{ts,js,json,yaml,yml,md}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@actions/core": "^1.2.5",
+    "@actions/github": "^4.0.0",
+    "@octokit/action": "^3.1.1",
+    "@types/debug": "^4.1.5",
+    "@types/jest": "^26.0.14",
+    "@types/jest-when": "^2.7.1",
+    "@types/node": "^14.11.1",
+    "@zeit/ncc": "^0.22.3",
+    "axios": "^0.20.0",
+    "cli-table3": "^0.6.0",
+    "debug": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-neo": "^0.5.2",
+    "husky": "^4.3.0",
+    "jest": "^26.4.2",
+    "jest-when": "^2.7.2",
+    "lcov-parse": "^1.0.0",
+    "lint-staged": "^10.4.0",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.3.0",
+    "ts-node-dev": "1.0.0-pre.62",
+    "typescript": "^3.9.7"
+  }
+}
